@@ -1,6 +1,9 @@
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 
@@ -16,7 +19,6 @@ public class MainUI extends JFrame{
 		setTitle("Chatting Program");
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER,0,30));
-		
 		
 		lb1 = new JLabel("Chatting Program");
 		lb1.setFont(new Font("¸¼Àº °íµñ",Font.BOLD,25));
@@ -45,15 +47,34 @@ public class MainUI extends JFrame{
 		loginPanel.add(btnRegister);
 		add(idPanel);
 		add(passPanel);
-		add(loginPanel);
+		add(loginPanel);	
 		
 		setSize(300,400);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		btnLogin.addActionListener(new MyAction());
+		btnRegister.addActionListener(new MyAction());
+	}
+	
+	class MyAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == btnLogin){
+				
+			}
+			else if(e.getSource() == btnRegister) {
+				setVisible(false);
+				getContentPane().removeAll();
+				getContentPane().add(new RegisterUI());
+				revalidate();
+				repaint();
+			}
+		}
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new MainUI();
 	}
-
+	
 }
+
+

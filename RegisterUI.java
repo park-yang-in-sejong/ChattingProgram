@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 
 
 public class RegisterUI extends JFrame{
@@ -18,7 +17,6 @@ public class RegisterUI extends JFrame{
 	public RegisterUI() {
 		this.setTitle("Register");
 		setLayout(new FlowLayout(FlowLayout.CENTER,0,30));
-		EtchedBorder eborder = new EtchedBorder();
 		
 		lb1 = new JLabel("User Register");
 		lb1.setFont(new Font("¸¼Àº °íµñ",Font.BOLD,25));
@@ -57,8 +55,25 @@ public class RegisterUI extends JFrame{
 		setSize(300,400);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		btnSubmit.addActionListener(new MyAction());
+		btnCancel.addActionListener(new MyAction());
 	}
 	
+	class MyAction implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == btnSubmit){
+				
+			}
+			else if(e.getSource() == btnCancel) {
+				setVisible(false);
+				getContentPane().removeAll();
+				getContentPane().add(new MainUI());
+				revalidate();
+				repaint();
+			}
+		}
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new RegisterUI();
