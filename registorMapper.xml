@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="registor">
+	<insert id="insert">
+		insert into registor values(#{name} ,#{ID}, #{psw})
+	</insert>
+<!-- 	<select id="select_id" resultType="String">select id from names</select> -->
+	<select id="select" resultType="game.GamerVO">
+	    select ID from registor where ID = 땡땡땡
+	</select>
+
+</mapper>
