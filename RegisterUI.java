@@ -1,9 +1,15 @@
+package ChattingProgramming;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
+
+//import game.Cal;
+import ChattingProgramming.registorDAO;
+import ChattingProgramming.RegistorVO;
 
 
 public class RegisterUI extends JFrame{
@@ -63,8 +69,23 @@ public class RegisterUI extends JFrame{
 	class MyAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == btnSubmit){
-				
-			}
+							
+				String id = userID.getText();
+				RegistorVO vo = new RegistorVO(userName.getText(), userID.getText(), userPasswd.getText()); // 여기서 전달 받음
+
+				registorDAO dao = new registorDAO();
+					if (dao.insert(vo)) {
+					System.out.println("입력성공!!");
+//						form.showMsg("입력성공!!");
+//						form.setVisible(false);
+//						mainView.setVisible(true);
+//						play.setVisible(false);          
+//					} 
+//				else
+//						.showMsg("이름을 입력해주세요");
+//				
+					}
+				}
 			else if(e.getSource() == btnCancel) {
 				setVisible(false);
 				getContentPane().removeAll();
