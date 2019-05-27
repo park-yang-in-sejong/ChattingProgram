@@ -2,6 +2,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,13 +62,12 @@ public class MainUI extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		btnLogin.addActionListener(new MyAction());
 		btnRegister.addActionListener(new MyAction());
-		
-		
 	}
 	
 	class MyAction implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e) {
+			getSHA pw = new getSHA();
 			
 			if(e.getSource() == btnLogin){
 				Connection conn = null; // DB연결된 상태(세션)을 담은 객체
@@ -76,6 +77,9 @@ public class MainUI extends JFrame{
 		        try {
 		        	String userid = userID.getText();
 		            String passwd = userPasswd.getText();
+		            
+		            passwd = pw.getSHA(passwd);
+		            
 		            String query = "select name,id,password from chatuser";
 		            
 		            conn = DBConnection.getConnection();
@@ -92,6 +96,7 @@ public class MainUI extends JFrame{
 	                		{
 	                			System.out.println("Login Success");
 	                			charClient st = new charClient();
+	                			
 	                			check = true;
 	                		}
 	                		else {
@@ -129,9 +134,11 @@ public class MainUI extends JFrame{
 		}
 	}
 	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MainUI start = new MainUI();
+		
 	}
 }
 

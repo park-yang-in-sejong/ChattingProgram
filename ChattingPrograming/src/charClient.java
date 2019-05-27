@@ -16,13 +16,12 @@ public class charClient extends JFrame implements ActionListener, Runnable{
 	JTextArea ta;
 	JScrollPane scrol_ta;
 	JTextField tf_send;
-	
 	Socket s;
 	
 	//소켓 입출력 객체
 	Scanner in;  // from 서버
 	OutputStream out; // to 서버
-	private String name;
+	
 	
 	public charClient() {
 		setTitle("대화방");
@@ -55,7 +54,7 @@ public class charClient extends JFrame implements ActionListener, Runnable{
 	public void connect() {
 		try {
 			//3. 서버에 접속
-			s = new Socket("172.16.27.250", 5000);
+			s = new Socket("", 5000);
 			
 			// 4.소켓 입출력 객체 생성
 			in = new Scanner(s.getInputStream());
@@ -69,13 +68,11 @@ public class charClient extends JFrame implements ActionListener, Runnable{
 		}
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		//System.out.println("액션");
-
-		String str = tf_send.getText();
 		
+		String str = tf_send.getText();
 		str= str + "\n"; // 라인 구분, 데이터 구분
 		
 		try {
@@ -101,8 +98,7 @@ public class charClient extends JFrame implements ActionListener, Runnable{
 	}
 	
 	
+	
 	public static void main(String[] args) {
-		new charClient();
-		
 	}
 }

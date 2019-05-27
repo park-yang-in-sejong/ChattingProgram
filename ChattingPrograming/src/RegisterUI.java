@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.*;
 import javax.swing.*;
@@ -66,6 +69,8 @@ public class RegisterUI extends JFrame{
 	
 	class MyAction implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
+			getSHA pw = new getSHA();
+			
 			if(e.getSource() == btnSubmit){
 				Connection conn = null; // DB연결된 상태(세션)을 담은 객체
 		        PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
@@ -82,7 +87,10 @@ public class RegisterUI extends JFrame{
 		            String username = userName.getText();		           
 		            String userid = userID.getText();
 		            String passwd = userPasswd.getText();
-		            		           
+		            
+		            passwd = pw.getSHA(passwd);
+		            
+		            System.out.println(passwd);
 		            pstm.setString(1, username);
 	                pstm.setString(2, userid);
 	                pstm.setString(3,passwd);
