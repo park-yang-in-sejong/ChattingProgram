@@ -17,9 +17,11 @@ public class Service extends Thread{ // 소켓 입출력 서비스
 			// 4.소켓 입출력 객체 생성
 			in = new Scanner(s.getInputStream());
 			out = s.getOutputStream();
+			
 			start();
+			run();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block	
 			e.printStackTrace();
 		}
 	}
@@ -29,6 +31,8 @@ public class Service extends Thread{ // 소켓 입출력 서비스
 		while(true) {
 			String msg = in.nextLine();
 			msg = msg+"\n";
+			//out.write(msg.getBytes());
+			//System.out.println(msg);
 			toMsgAll(msg);
 		}
 	}
@@ -36,6 +40,7 @@ public class Service extends Thread{ // 소켓 입출력 서비스
 		for (int i = 0; i < v.size(); i++) {// 접속한 클라이언트 수만큼 반복
 			try {
 				v.get(i).toMsg(msg);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -10,9 +10,9 @@ public class DBConnection
         {
             Connection conn = null;
             try {
-                String user = ""; 
-                String pw = "";
-                String url = "";
+                String user = "c##javadba"; 
+                String pw = "root";
+                String url = "jdbc:oracle:thin:@localhost?TNS_ADMIN=C:\\app\\admin\\product\\18.0.0\\dbhomeXE\\network\\admin";
                 
                 Class.forName("oracle.jdbc.driver.OracleDriver");        
                 conn = DriverManager.getConnection(url, user, pw);
@@ -24,7 +24,7 @@ public class DBConnection
             } catch (SQLException sqle) {
                 System.out.println("DB 접속실패 : "+sqle.toString());
             } catch (Exception e) {
-                System.out.println("Unkonwn error");
+                System.out.println("Unknown error");
                 e.printStackTrace();
             }
             return conn;     

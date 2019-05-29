@@ -21,6 +21,7 @@ public class Server extends Thread{
 		System.out.println("서버 시작...");
 		
 		start();
+		//run();
 		
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -32,7 +33,6 @@ public class Server extends Thread{
 	
 	public void run() {
 		try {
-			
 			while (true) {
 				//2. 생성을 했더라면, 클라이언트 접속 대기
 				//ss.accept(); // 서버 소켓이 클라이언트 기다림
@@ -45,7 +45,6 @@ public class Server extends Thread{
 				
 				InetAddress ia = s.getInetAddress();
 				System.out.println("클라이언트 접속 성공!!"+ ia.getHostAddress());
-			
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

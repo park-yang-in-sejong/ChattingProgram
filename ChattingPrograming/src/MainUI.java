@@ -24,6 +24,7 @@ public class MainUI extends JFrame{
 	boolean check;
 	
 	public MainUI() {
+		
 		setTitle("Chatting Program");
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER,0,30));
@@ -90,6 +91,9 @@ public class MainUI extends JFrame{
 	                	dbName = rs.getString(1);
 	                	dbuserID = rs.getString(2);
 	                	dbPassword = rs.getString(3);
+	                	
+	                	// System.out.println(dbPassword);
+	                	// System.out.println(passwd);
 	                	
 	                	if(dbuserID.equalsIgnoreCase(userid)) {
 	                		if(dbPassword.equalsIgnoreCase(passwd))
