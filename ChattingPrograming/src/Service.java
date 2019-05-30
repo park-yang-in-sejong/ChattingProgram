@@ -19,7 +19,7 @@ public class Service extends Thread{ // 소켓 입출력 서비스
 			out = s.getOutputStream();
 			
 			start();
-			run();
+			//run();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block	
 			e.printStackTrace();
@@ -28,13 +28,13 @@ public class Service extends Thread{ // 소켓 입출력 서비스
 
 	//6. from 클라이언트 (클라이언트에서 전달한 메시지 읽기)
 	public void run() {
-		while(true) {
-			String msg = in.nextLine();
-			msg = msg+"\n";
-			//out.write(msg.getBytes());
-			//System.out.println(msg);
-			toMsgAll(msg);
-		}
+		//while(true) {
+		
+			//String msg = in.nextLine();
+			//msg = msg+"\n";
+			
+			//toMsgAll(msg);
+		//}
 	}
 	public void toMsgAll(String msg) { // 전체 접속 클라이언트에게 메시지 보내기
 		for (int i = 0; i < v.size(); i++) {// 접속한 클라이언트 수만큼 반복

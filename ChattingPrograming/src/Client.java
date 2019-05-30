@@ -48,7 +48,7 @@ public class Client {
    public void request(String userName, String userID, String userPasswd) {
       
       try {
-      Socket s = new Socket("172.16.21.240", 5000);
+      Socket s = new Socket("172.16.21.240",5000);
       
       	//ArrayList list;
 //      
