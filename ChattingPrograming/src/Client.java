@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -16,15 +17,15 @@ public class Client {
    String userPasswd;
 
    public static void main(String[] args) throws Exception {
-   //   Socket s = new Socket("172.16.24.102", 5000);
-      
+     //Socket s = new Socket("172.16.24.102", 5000);
+       
 
    }
 
    public String getUserName() {
       return userName;
    }
-
+ 
    String setUserName(String userName) {
       return userName;
    }
@@ -34,7 +35,7 @@ public class Client {
    }
 
    String setUserID(String userID) {
-	  return userID;
+     return userID;
    }
 
    public String getUserPasswd() {
@@ -46,53 +47,60 @@ public class Client {
    }
 
    public void request(String userName, String userID, String userPasswd) {
-      
+       
       try {
-      Socket s = new Socket("172.16.21.240",5000);
-      
-      	//ArrayList list;
+      Socket s = new Socket("172.16.21.240", 5000);
+         //ArrayList list;
 //      
-      	//list.add(getUserName());
-      	//list.add(userID);
-      	//list.add(getUserPasswd());
+         //list.add(getUserName());
+         //list.add(userID);
+         //list.add(getUserPasswd());
 //      
       String[] list = new String[3];
       list[0] = userName;
       list[1] = userID;
       list[2] = userPasswd;
-      
-      
-      OutputStream out = s.getOutputStream();
-      InputStream in = s.getInputStream();
-   
-      PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
-      BufferedReader br = new BufferedReader(new InputStreamReader(in));
+      BufferedWriter bufWriter =  new BufferedWriter( new OutputStreamWriter( s.getOutputStream()));
+ 
+
+//      OutputStream out = s.getOutputStream();
+//      InputStream in = s.getInputStream();
+//      PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
+//      BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
       
       int i = 0;
-      String line = null;
+      String line = null; 
       
       while (i != 3) {
-    	 
-    	 line = list[i];
-    	 
-         // 6. PrintWriter¿¡ ÀÖ´Â println() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ ¼­¹ö¿¡°Ô Àü¼Û
+    	  
+        line = list[i];
 
-         pw.println(line);
-         pw.flush();
+         // 6. PrintWriterì— ìˆëŠ” println() ë©”ì†Œë“œë¥¼ ì´ìš©í•´ ì„œë²„ì—ê²Œ ì „ì†¡
+        bufWriter.write(line);
 
-         // 7. ¼­¹ö°¡ ´Ù½Ã ¹İÈ¯ÇÏ´Â ¹®ÀÚ¿­À» BufferedReader¿¡ ÀÖ´Â
+       // bufWriter.newLine(); 
 
-         // readLine()À» ÀÌ¿ëÇØ¼­ ÀĞ¾îµéÀÓ
+       bufWriter.flush();
+        
+//        String echo = br.readLine();
+//        System.out.println("ì„œë²„ë¡œë¶€í„° ì „ë‹¬ë°›ì€ ë¬¸ìì—´ :" + echo);
 
-         String echo = br.readLine();
+         
+  //       pw.println(line); 
+ //        if (i==2)
+  //      	 pw.flush();
 
-         System.out.println("¼­¹ö·ÎºÎÅÍ Àü´Ş¹ŞÀº ¹®ÀÚ¿­ :" + echo);
+         // 7. ì„œë²„ê°€ ë‹¤ì‹œ ë°˜í™˜í•˜ëŠ” ë¬¸ìì—´ì„ BufferedReaderì— ìˆëŠ”
+ 
+         // readLine()ì„ ì´ìš©í•´ì„œ ì½ì–´ë“¤ì„
+
          i++;
       }
       
-      // pw.close();
-      // br.close();
-      // s.close();   
+  //    pw.close();
+   //   br.close();
+      s.close();   
       }
       catch(Exception e) {
          System.out.println(e);
